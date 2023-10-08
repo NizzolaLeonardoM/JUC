@@ -28,7 +28,7 @@ function s.initial_effect(c)
 end
 s.listed_series={0x55,0x7b}
 function s.filter(c)
-	return c:IsFaceup() and (c:IsSetCard(0x55) or c:IsSetCard(0x7b))
+	return c:IsFaceup() and (c:IsCode(1) or c:IsCode(1))
 end
 function s.eqtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	local c=e:GetHandler()
@@ -81,7 +81,7 @@ function s.thcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SendtoGrave(e:GetHandler(),REASON_COST)
 end
 function s.thfilter(c)
-	return (c:IsSetCard(0x55) or c:IsSetCard(0x7b)) and c:IsMonster() and not c:IsCode(id) and c:IsAbleToHand()
+	return (c:IsSetCard(c:IsCode(1) or c:IsCode(1)) and c:IsMonster() and not c:IsCode(id) and c:IsAbleToHand()
 end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.thfilter,tp,LOCATION_DECK,0,1,nil) end
